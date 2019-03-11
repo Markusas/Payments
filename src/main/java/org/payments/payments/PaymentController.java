@@ -22,18 +22,26 @@ public class PaymentController {
         );
         return result;
     }
-
-    @GetMapping("/payments/{id}")
-    PaymentResponse one(@PathVariable Long id){
-        Payment payment = repository.findById(id)
-                .orElseThrow(() -> new PaymentNotFoundException(id));
-        return new PaymentResponse(payment.getId(), payment.getPerson().getName(), payment.getPerson().getOfficialId(), payment.getAmount());
-    }
+//
+//    @GetMapping("/payments/{id}")
+//    PaymentResponse one(@PathVariable Long id){
+//        Payment payment = repository.findById(id)
+//                .orElseThrow(() -> new PaymentNotFoundException(id));
+//        return new PaymentResponse(payment.getId(), payment.getPerson().getName(), payment.getPerson().getOfficialId(), payment.getAmount());
+//    }
 
     @PostMapping("/payments")
     Payment addPayment(@RequestBody Payment newPayment){
         return repository.save(newPayment);
     }
 
+    @GetMapping("/paymets/{officialId}")
+    List<PaymentResponse> byOfficialId(@PathVariable String officialId){
+        List<PaymentResponse> result = new ArrayList<>();
+        repository.findPaymentsByOfficialId(officialId).forEach(
+                payment -> result.add(new PaymentResponse(payment.getId(), payment.getPerson().getName(), payment.getPerson().getOfficialId(), payment.getAmount()))
+        );
+        return result;
+    }
 
 }

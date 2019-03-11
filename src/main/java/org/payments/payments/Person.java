@@ -11,15 +11,14 @@ import javax.persistence.Id;
 @Entity
 public class Person {
 
-
-    private Long id;
     @Id
     @GeneratedValue
-    private String OfficialId;
+    private Long id;
+    private String officialId;
     private String name;
 
      Person(String officialId, String name) {
-        this.OfficialId = officialId;
+        this.officialId = officialId;
         this.name = name;
     }
 
