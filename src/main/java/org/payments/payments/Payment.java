@@ -1,31 +1,35 @@
 package org.payments.payments;
 
-import lombok.Data;
-
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-
-@Data
 @Entity
 public class Payment {
 
-    @OneToOne
-    @JoinColumn(name = "personId")
-    private Person person;
     @Id
     @GeneratedValue
-    private Long id;
+    private int paymentId;
+    private int personId;
     private BigDecimal amount;
     private LocalDateTime date;
 
-    public Person getPerson() {
-        return person;
+    public Payment(int personId, int paymentId, BigDecimal amount, LocalDateTime date) {
+        this.personId = personId;
+        this.paymentId = paymentId;
+        this.amount = amount;
+        this.date = date;
     }
 
-    public Long getId() {
-        return id;
+    public int getPersonId() {
+        return personId;
+    }
+
+    public int getPaymentId() {
+        return paymentId;
+    }
+
+    public Payment() {
     }
 
     public BigDecimal getAmount() {
@@ -36,3 +40,4 @@ public class Payment {
         return date;
     }
 }
+

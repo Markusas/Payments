@@ -1,27 +1,37 @@
 package org.payments.payments;
 
-
-import lombok.Data;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-@Data
 @Entity
 public class Person {
-
-    @Id
-    @GeneratedValue
-    private Long id;
-    private String officialId;
-    private String name;
-
-     Person(String officialId, String name) {
+    public Person(int id, String officialId, String name) {
+        this.id = id;
         this.officialId = officialId;
         this.name = name;
     }
 
     public Person() {
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getOfficialId() {
+        return officialId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    @Id
+    @GeneratedValue
+    private int id;
+    private String officialId;
+    private String name;
+
 }
+

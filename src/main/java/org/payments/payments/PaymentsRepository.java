@@ -5,9 +5,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
-public interface PaymentsRepository extends JpaRepository<Payment, Long> {
+public interface PaymentsRepository extends JpaRepository<Payment, Integer> {
 
-    @Query(value = "SELECT * FROM Person p WHERE p.officialId ", nativeQuery = true)
-    List<Payment> findPaymentsByOfficialId(String officialId);
 
 }
