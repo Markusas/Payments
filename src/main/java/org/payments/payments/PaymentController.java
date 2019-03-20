@@ -15,21 +15,20 @@ public class PaymentController {
     }
 
     @GetMapping("/payments")
-    List<Payment> all(){
+    List<Payment> all() {
 
         return repository.findAll();
     }
 
     @GetMapping("/payments/{id}")
     Payment one(@PathVariable Integer id) {
-        return repository.findById(id).orElseThrow( () -> new PaymentNotFoundException(id));
+        return repository.findById(id).orElseThrow(() -> new PaymentNotFoundException(id));
     }
 
     @PostMapping("/payments")
-    Payment addPayment(@RequestBody Payment newPayment){
+    Payment addPayment(@RequestBody Payment newPayment) {
         return repository.save(newPayment);
     }
-
 
 
 }

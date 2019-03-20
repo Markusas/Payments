@@ -6,6 +6,12 @@ import javax.persistence.Id;
 
 @Entity
 public class Person {
+    @Id
+    @GeneratedValue
+    private int id;
+    private String officialId;
+    private String name;
+
     public Person(int id, String officialId, String name) {
         this.id = id;
         this.officialId = officialId;
@@ -27,11 +33,6 @@ public class Person {
         return name;
     }
 
-    @Id
-    @GeneratedValue
-    private int id;
-    private String officialId;
-    private String name;
 
 }
 
